@@ -4,29 +4,35 @@ import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Separator from '../../../components/Separator';
 import {styles} from './styles';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-const Signup = () => {
+const Signup = ({navigation}) => {
   const onSignIn = () => {
-    console.log('HELLO');
+    navigation.navigate('Signin');
+  };
+  const onBack = () => {
+    navigation.goBack();
   };
   return (
-    <View style={styles.container}>
-      <AuthHeader title="sign up" />
-      <Input label="Name" placeholder="John Doe" />
-      <Input label="E-mail" placeholder="example@gmail.com" />
-      <Input isPassword label="Password" placeholder="*******" />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <AuthHeader onBackPress={onBack} title="sign up" />
+        <Input label="Name" placeholder="John Doe" />
+        <Input label="E-mail" placeholder="example@gmail.com" />
+        <Input isPassword label="Password" placeholder="*******" />
 
-      <Button style={styles.button} title="Sign Up" />
-      <Separator text="Or sign up with" />
+        <Button style={styles.button} title="Sign Up" />
+        <Separator text="Or sign up with" />
 
-      <Text style={styles.footerText}>
-        Already have an account?
-        <Text onPress={onSignIn} style={styles.footerLink}>
-          {' '}
-          Sign In
+        <Text style={styles.footerText}>
+          Already have an account?
+          <Text onPress={onSignIn} style={styles.footerLink}>
+            {' '}
+            Sign In
+          </Text>
         </Text>
-      </Text>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
